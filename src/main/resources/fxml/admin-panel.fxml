@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lifecal.controller.AdminPanelController"
+            fitToWidth="true" styleClass="scroll-pane">
+    <VBox styleClass="container" spacing="20">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="👨‍💼 ระบบจัดการผู้ใช้และข้อมูล" styleClass="label-heading"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 รีเฟรช" onAction="#handleRefresh" styleClass="button"/>
+            <Button text="← กลับ" onAction="#handleBack" styleClass="button-secondary"/>
+        </HBox>
+
+        <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+            <!-- Users Tab -->
+            <Tab text="👥 ผู้ใช้งาน">
+                <VBox spacing="20" styleClass="card">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    
+                    <!-- Summary Card -->
+                    <VBox spacing="10">
+                        <Label text="สรุปข้อมูล" styleClass="label-subheading"/>
+                        <HBox spacing="20">
+                            <VBox styleClass="dashboard-card" spacing="8" HBox.hgrow="ALWAYS">
+                                <Label text="👥 จำนวนผู้ใช้ทั้งหมด" styleClass="label-secondary"/>
+                                <Label fx:id="totalUsersLabel" text="0" styleClass="metric-value"/>
+                            </VBox>
+                            <VBox styleClass="dashboard-card" spacing="8" HBox.hgrow="ALWAYS">
+                                <Label text="👨‍💼 จำนวนผู้ดูแลระบบ" styleClass="label-secondary"/>
+                                <Label fx:id="totalAdminsLabel" text="0" styleClass="metric-value"/>
+                            </VBox>
+                            <VBox styleClass="dashboard-card" spacing="8" HBox.hgrow="ALWAYS">
+                                <Label text="👤 จำนวนผู้ใช้ทั่วไป" styleClass="label-secondary"/>
+                                <Label fx:id="totalRegularUsersLabel" text="0" styleClass="metric-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Users Table -->
+                    <VBox spacing="15" VBox.vgrow="ALWAYS">
+                        <Label text="รายชื่อผู้ใช้ทั้งหมด" styleClass="label-subheading"/>
+
+                        <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn text="ID" prefWidth="60">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="id"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="ชื่อผู้ใช้" prefWidth="150">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="username"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="บทบาท" prefWidth="100">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="role"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="น้ำหนักปัจจุบัน (กก.)" prefWidth="150">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="currentWeight"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="เป้าหมาย (กก.)" prefWidth="130">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="targetWeight"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn text="วันที่สมัคร" prefWidth="180">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="createdAt"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="actionsColumn" text="จัดการ" prefWidth="120">
+                                </TableColumn>
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="10" styleClass="label-secondary">
+                            <Label text="⚠️ คำเตือน: การลบผู้ใช้จะลบข้อมูลทั้งหมดของผู้ใช้นั้น (บันทึกอาหาร ออกกำลังกาย และน้ำหนัก) และไม่สามารถกู้คืนได้"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </Tab>
+
+            <!-- Foods Tab -->
+            <Tab text="🍎 อาหาร">
+                <VBox spacing="20" styleClass="card">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="รายการอาหารทั้งหมด" styleClass="label-subheading"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="+ เพิ่มอาหาร" onAction="#handleAddFood" styleClass="button-primary"/>
+                    </HBox>
+
+                    <TableView fx:id="foodsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn text="ID" prefWidth="60">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="id"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="ชื่ออาหาร" prefWidth="200">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="name"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="หมวดหมู่" prefWidth="150">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="category"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="แคลอรี่" prefWidth="100">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="kcalPerServing"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="โปรตีน" prefWidth="80">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="protein"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="คาร์บ" prefWidth="80">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="carbs"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="ไขมัน" prefWidth="80">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="fat"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- Exercises Tab -->
+            <Tab text="🏃 ออกกำลังกาย">
+                <VBox spacing="20" styleClass="card">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="รายการออกกำลังกายทั้งหมด" styleClass="label-subheading"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="+ เพิ่มการออกกำลังกาย" onAction="#handleAddExercise" styleClass="button-primary"/>
+                    </HBox>
+
+                    <TableView fx:id="exercisesTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn text="ID" prefWidth="60">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="id"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="ชื่อการออกกำลังกาย" prefWidth="250">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="name"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="หมวดหมู่" prefWidth="150">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="category"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="แคลอรี่/นาที" prefWidth="120">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="kcalPerMinute"/>
+                                </cellValueFactory>
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </Tab>
+        </TabPane>
+
+        <VBox.margin>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </VBox.margin>
+    </VBox>
+</ScrollPane>

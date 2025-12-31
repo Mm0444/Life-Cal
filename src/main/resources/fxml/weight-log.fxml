@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lifecal.controller.WeightLogController"
+            fitToWidth="true" styleClass="scroll-pane">
+    <VBox styleClass="container" spacing="20">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="⚖️ บันทึกน้ำหนัก" styleClass="label-heading"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="← กลับ" onAction="#handleBack" styleClass="button-secondary"/>
+        </HBox>
+
+        <!-- Statistics Cards -->
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.33"/>
+                <ColumnConstraints percentWidth="33.34"/>
+            </columnConstraints>
+
+            <!-- Current Weight -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="0">
+                <Label text="น้ำหนักปัจจุบัน" styleClass="label-secondary"/>
+                <Label fx:id="currentWeightLabel" text="N/A" styleClass="metric-value"
+                       style="-fx-text-fill: #4F46E5;"/>
+            </VBox>
+
+            <!-- Previous Weight -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="1">
+                <Label text="น้ำหนักก่อนหน้า" styleClass="label-secondary"/>
+                <Label fx:id="previousWeightLabel" text="N/A" styleClass="metric-value"
+                       style="-fx-text-fill: #6B7280;"/>
+            </VBox>
+
+            <!-- Change -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="2">
+                <Label text="การเปลี่ยนแปลง" styleClass="label-secondary"/>
+                <Label fx:id="changeLabel" text="N/A" styleClass="metric-value"/>
+            </VBox>
+        </GridPane>
+
+        <!-- Add Entry Card -->
+        <VBox styleClass="card" spacing="15">
+            <Label text="เพิ่มรายการน้ำหนัก" styleClass="label-subheading"/>
+            
+            <GridPane hgap="15" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="100" prefWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <!-- Date -->
+                <Label text="วันที่:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                           prefWidth="200"/>
+
+                <!-- Weight -->
+                <Label text="น้ำหนัก (กก.):" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="weightField" promptText="e.g., 70.5" 
+                          GridPane.columnIndex="1" GridPane.rowIndex="1"
+                          maxWidth="200"/>
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="➕ เพิ่มรายการ" onAction="#handleAddEntry" styleClass="button-success"/>
+            </HBox>
+        </VBox>
+
+        <!-- Weight History Table Card -->
+        <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
+            <Label text="ประวัติน้ำหนัก" styleClass="label-subheading"/>
+
+            <TableView fx:id="weightLogTable" VBox.vgrow="ALWAYS" minHeight="300">
+                <columns>
+                    <TableColumn fx:id="dateColumn" text="วันที่" prefWidth="150" minWidth="120"/>
+                    <TableColumn fx:id="weightColumn" text="น้ำหนัก (กก.)" prefWidth="120" minWidth="100"/>
+                    <TableColumn fx:id="actionColumn" text="การกระทำ" prefWidth="120" minWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="ยังไม่มีรายการน้ำหนัก เริ่มบันทึกน้ำหนักของคุณ!" styleClass="label-secondary"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <VBox.margin>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </VBox.margin>
+    </VBox>
+</ScrollPane>

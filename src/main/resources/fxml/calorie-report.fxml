@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lifecal.controller.CalorieReportController"
+            fitToWidth="true" styleClass="scroll-pane">
+    <VBox styleClass="container" spacing="20">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="📊 รายงานสถิติแคลอรี่" styleClass="label-heading"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="← กลับ" onAction="#handleBack" styleClass="button-secondary"/>
+        </HBox>
+
+        <!-- Date Range Selection Card -->
+        <VBox styleClass="card" spacing="15">
+            <Label text="เลือกช่วงวันที่" styleClass="label-subheading"/>
+            
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="จาก:"/>
+                <DatePicker fx:id="startDatePicker" prefWidth="150"/>
+                <Label text="ถึง:"/>
+                <DatePicker fx:id="endDatePicker" prefWidth="150"/>
+                <Button text="🔄 รีเฟรช" onAction="#handleRefresh" styleClass="button"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Label text="เลือกด่วน:" styleClass="label-secondary"/>
+                <Button text="7 วันล่าสุด" onAction="#handleLast7Days" styleClass="button-secondary"/>
+                <Button text="30 วันล่าสุด" onAction="#handleLast30Days" styleClass="button-secondary"/>
+                <Button text="เดือนนี้" onAction="#handleThisMonth" styleClass="button-secondary"/>
+            </HBox>
+        </VBox>
+
+        <!-- Summary Statistics -->
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+            </columnConstraints>
+
+            <!-- Total Intake -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="0">
+                <Label text="🍽️ แคลอรี่ที่ได้รับทั้งหมด" styleClass="label-secondary"/>
+                <Label fx:id="totalIntakeLabel" text="0 kcal" styleClass="metric-value"/>
+            </VBox>
+
+            <!-- Total Burned -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="1">
+                <Label text="🔥 แคลอรี่ที่เผาผลาญทั้งหมด" styleClass="label-secondary"/>
+                <Label fx:id="totalBurnedLabel" text="0 kcal" styleClass="metric-value"/>
+            </VBox>
+
+            <!-- Net Calories -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="2">
+                <Label text="⚖️ แคลอรี่สุทธิ" styleClass="label-secondary"/>
+                <Label fx:id="netCaloriesLabel" text="0 kcal" styleClass="metric-value"/>
+            </VBox>
+
+            <!-- Average Daily -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="3">
+                <Label text="📈 แคลอรี่ที่ได้รับเฉลี่ยต่อวัน" styleClass="label-secondary"/>
+                <Label fx:id="avgDailyLabel" text="0 kcal" styleClass="metric-value"/>
+            </VBox>
+        </GridPane>
+
+        <!-- Chart Card -->
+        <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
+            <Label text="แนวโน้มแคลอรี่" styleClass="label-subheading"/>
+            
+            <LineChart fx:id="calorieChart" title="แคลอรี่: ที่ได้รับ vs ที่เผาผลาญ" 
+                       prefHeight="400" VBox.vgrow="ALWAYS" legendVisible="true">
+                <xAxis>
+                    <CategoryAxis label="วันที่" side="BOTTOM"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="แคลอรี่ (กิโลแคลอรี่)" side="LEFT"/>
+                </yAxis>
+            </LineChart>
+        </VBox>
+
+        <VBox.margin>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </VBox.margin>
+    </VBox>
+</ScrollPane>

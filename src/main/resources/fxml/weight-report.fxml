@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lifecal.controller.WeightReportController"
+            fitToWidth="true" styleClass="scroll-pane">
+    <VBox styleClass="container" spacing="20">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="⚖️ รายงานแนวโน้มน้ำหนัก" styleClass="label-heading"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 รีเฟรช" onAction="#handleRefresh" styleClass="button"/>
+            <Button text="← กลับ" onAction="#handleBack" styleClass="button-secondary"/>
+        </HBox>
+
+        <!-- Summary Statistics -->
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+                <ColumnConstraints percentWidth="25"/>
+            </columnConstraints>
+
+            <!-- Start Weight -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="0">
+                <Label text="📅 น้ำหนักเริ่มต้น" styleClass="label-secondary"/>
+                <Label fx:id="startWeightLabel" text="N/A" styleClass="metric-value"/>
+            </VBox>
+
+            <!-- Current Weight -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="1">
+                <Label text="📊 น้ำหนักปัจจุบัน" styleClass="label-secondary"/>
+                <Label fx:id="currentWeightLabel" text="N/A" styleClass="metric-value"/>
+            </VBox>
+
+            <!-- Weight Change -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="2">
+                <Label text="📈 การเปลี่ยนแปลงน้ำหนัก" styleClass="label-secondary"/>
+                <Label fx:id="weightChangeLabel" text="N/A" styleClass="metric-value"/>
+            </VBox>
+
+            <!-- Total Entries -->
+            <VBox styleClass="dashboard-card" spacing="8" GridPane.columnIndex="3">
+                <Label text="📝 จำนวนรายการทั้งหมด" styleClass="label-secondary"/>
+                <Label fx:id="totalEntriesLabel" text="0" styleClass="metric-value"/>
+            </VBox>
+        </GridPane>
+
+        <!-- Chart Card -->
+        <VBox styleClass="card" spacing="15" VBox.vgrow="ALWAYS">
+            <Label text="แนวโน้มน้ำหนักตามช่วงเวลา" styleClass="label-subheading"/>
+            
+            <LineChart fx:id="weightChart" title="ความก้าวหน้าของน้ำหนัก" 
+                       prefHeight="450" VBox.vgrow="ALWAYS" legendVisible="false">
+                <xAxis>
+                    <CategoryAxis label="วันที่" side="BOTTOM"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="น้ำหนัก (กก.)" side="LEFT" autoRanging="true"/>
+                </yAxis>
+            </LineChart>
+
+            <HBox spacing="10" styleClass="label-secondary">
+                <Label text="💡 เคล็ดลับ: บันทึกน้ำหนักของคุณอย่างสม่ำเสมอจากหน้าบันทึกน้ำหนักเพื่อติดตามความก้าวหน้าของคุณ"/>
+            </HBox>
+        </VBox>
+
+        <VBox.margin>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </VBox.margin>
+    </VBox>
+</ScrollPane>

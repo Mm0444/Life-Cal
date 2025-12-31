@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.lifecal.controller.DashboardController">
+    
+    <!-- Left Sidebar Navigation -->
+    <left>
+        <VBox styleClass="card" spacing="12" minWidth="220">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <Label text="LIFE CAL" styleClass="label-subheading"/>
+            <Separator/>
+            
+            <Button text="🏠 แดชบอร์ด" styleClass="nav-button" maxWidth="Infinity" disable="true"/>
+            <Button text="👤 โปรไฟล์" onAction="#handleProfile" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="🍽️ ฐานข้อมูลอาหาร" onAction="#handleFood" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="💪 ฐานข้อมูลการออกกำลังกาย" onAction="#handleExercise" styleClass="nav-button" maxWidth="Infinity"/>
+            
+            <Separator/>
+            <Label text="บันทึกประจำวัน" styleClass="label-secondary"/>
+            
+            <Button text="📝 บันทึกอาหาร" onAction="#handleFoodLog" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="🏃 บันทึกการออกกำลังกาย" onAction="#handleExerciseLog" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="⚖️ บันทึกน้ำหนัก" onAction="#handleWeightLog" styleClass="nav-button" maxWidth="Infinity"/>
+            
+            <Separator/>
+            <Label text="รายงาน" styleClass="label-secondary"/>
+            
+            <Button text="📊 สถิติแคลอรี่" onAction="#handleCalorieReport" styleClass="nav-button" maxWidth="Infinity"/>
+            <Button text="📈 แนวโน้มน้ำหนัก" onAction="#handleWeightReport" styleClass="nav-button" maxWidth="Infinity"/>
+            
+            
+            <VBox VBox.vgrow="ALWAYS"/>
+            
+            <!-- Admin Panel Button (visible only for admins) -->
+            <Button fx:id="adminMenuButton" text="👨‍💼 จัดการผู้ใช้" onAction="#handleAdminPanel" styleClass="nav-button" maxWidth="Infinity" 
+                    visible="false" managed="false"/>
+            
+            <Button text="🚪 ออกจากระบบ" onAction="#handleLogout" styleClass="button-danger" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+    
+    <!-- Center Content -->
+    <center>
+        <javafx.scene.control.ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane">
+            <VBox styleClass="dashboard-container" spacing="24">
+                <padding>
+                    <Insets top="24" right="24" bottom="24" left="24"/>
+                </padding>
+                
+                <!-- Welcome Header -->
+                <Label fx:id="usernameLabel" text="ยินดีต้อนรับ!" styleClass="label-heading"/>
+                
+                <!-- Health Metrics Grid -->
+                <GridPane hgap="20" vgap="20">
+                    <!-- BMI Card -->
+                    <VBox styleClass="dashboard-card" GridPane.rowIndex="0" GridPane.columnIndex="0" minWidth="200">
+                        <Label text="ดัชนีมวลกาย (BMI)" styleClass="metric-label"/>
+                        <Label fx:id="bmiLabel" text="0.0" styleClass="metric-value"/>
+                        <Label fx:id="bmiCategoryLabel" text="ปกติ" styleClass="label-secondary"/>
+                    </VBox>
+                    
+                    <!-- BMR Card -->
+                    <VBox styleClass="dashboard-card" GridPane.rowIndex="0" GridPane.columnIndex="1" minWidth="200">
+                        <Label text="อัตราการเผาผลาญ (BMR)" styleClass="metric-label"/>
+                        <Label fx:id="bmrLabel" text="0 กิโลแคลอรี่/วัน" styleClass="metric-value"/>
+                        <Label text="แคลอรี่ขณะพัก" styleClass="label-secondary"/>
+                    </VBox>
+                    
+                    <!-- Current Weight-->
+                    <VBox styleClass="dashboard-card" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                        <Label text="น้ำหนักปัจจุบัน" styleClass="metric-label"/>
+                        <Label fx:id="currentWeightLabel" text="0 กก." styleClass="metric-value"/>
+                    </VBox>
+                    
+                    <!-- Target Weight Card -->
+                    <VBox styleClass="dashboard-card" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <Label text="น้ำหนักเป้าหมาย" styleClass="metric-label"/>
+                        <Label fx:id="targetWeightLabel" text="0 กก." styleClass="metric-value"/>
+                    </VBox>
+                </GridPane>
+                
+                <!-- Weight Progress Card -->
+                <VBox styleClass="dashboard-card" spacing="12">
+                    <Label text="ความคืบหน้าเป้าหมายน้ำหนัก" styleClass="label-subheading"/>
+                    <ProgressBar fx:id="weightProgressBar" progress="0" maxWidth="Infinity" minHeight="30"/>
+                    <HBox alignment="CENTER">
+                        <Label fx:id="progressPercentLabel" text="0%" styleClass="metric-value" style="-fx-font-size: 24px;"/>
+                    </HBox>
+                    <Label fx:id="progressMessageLabel" text="ติดตามความคืบหน้าของคุณต่อไป!" styleClass="label-secondary" alignment="CENTER"/>
+                    
+                    <VBox fx:id="goalReachedBox" alignment="CENTER" spacing="10" visible="false" managed="false">
+                        <Label text="🎉 ถึงเป้าหมายแล้ว! 🎉" styleClass="label-heading" style="-fx-text-fill: #10B981;"/>
+                        <Label fx:id="maintenanceLabel" text="เพื่อรักษาน้ำหนัก ควรบริโภค ~2000 กิโลแคลอรี่/วัน" styleClass="label-secondary" wrapText="true"/>
+                        <Button text="ตั้งเป้าหมายใหม่" onAction="#handleProfile" styleClass="button"/>
+                    </VBox>
+                </VBox>
+                
+                <!-- Quick Actions -->
+                <VBox styleClass="dashboard-card" spacing="16">
+                    <Label text="เมนูลัด" styleClass="label-subheading"/>
+                    <HBox spacing="12">
+                        <Button text="บันทึกอาหารวันนี้" onAction="#handleFoodLog" minWidth="150"/>
+                        <Button text="บันทึกการออกกำลังกาย" onAction="#handleExerciseLog" minWidth="150"/>
+                        <Button text="อัปเดตน้ำหนัก" onAction="#handleWeightLog" minWidth="150"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </javafx.scene.control.ScrollPane>
+    </center>
+</BorderPane>

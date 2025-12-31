@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lifecal.controller.RegisterController"
+      styleClass="auth-container"
+      alignment="CENTER">
+    
+    <VBox styleClass="auth-card" alignment="CENTER">
+        <!-- Title -->
+        <Label text="สร้างบัญชีใหม่" styleClass="label-heading">
+            <VBox.margin>
+                <Insets bottom="24"/>
+            </VBox.margin>
+        </Label>
+        
+        <!-- Form Fields -->
+        <GridPane hgap="16" vgap="12" minWidth="400">
+            <!-- Username -->
+            <Label text="ชื่อผู้ใช้" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+            <TextField fx:id="usernameField" promptText="ระบุชื่อผู้ใช้" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"/>
+            
+            <!-- Email -->
+            <Label text="อีเมล (ไม่บังคับ)" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+            <TextField fx:id="emailField" promptText="example@mail.com" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"/>
+            
+            <!-- Password -->
+            <Label text="รหัสผ่าน" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="passwordField" promptText="รหัสผ่าน" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            
+            <!-- Confirm Password -->
+            <Label text="ยืนยันรหัสผ่าน" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="ยืนยันรหัสผ่าน" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            
+            <!-- Current Weight -->
+            <Label text="น้ำหนักปัจจุบัน (กก.)" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="weightField" promptText="เช่น 70" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            
+            <!-- Height -->
+            <Label text="ส่วนสูง (ซม.)" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <TextField fx:id="heightField" promptText="เช่น 170" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            
+            <!-- Target Weight -->
+            <Label text="น้ำหนักเป้าหมาย (กก.)" GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+            <TextField fx:id="targetWeightField" promptText="เช่น 65" GridPane.rowIndex="9" GridPane.columnIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"/>
+            
+            <!-- Activity Level -->
+            <Label text="ระดับกิจกรรม" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="activityLevelCombo" maxWidth="Infinity" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+            
+            <!-- Exercise Frequency -->
+            <Label text="ความถี่ในการออกกำลังกาย" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+            <ComboBox fx:id="exerciseFrequencyCombo" maxWidth="Infinity" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+        </GridPane>
+        
+        <!-- Buttons -->
+        <HBox spacing="12" alignment="CENTER">
+            <VBox.margin>
+                <Insets top="24"/>
+            </VBox.margin>
+            
+            <Button text="ลงทะเบียน" onAction="#handleRegister" minWidth="180" minHeight="45"/>
+            <Button text="กลับไปหน้าเข้าสู่ระบบ" onAction="#handleBack" styleClass="button-secondary" minWidth="180" minHeight="45"/>
+        </HBox>
+    </VBox>
+</VBox>

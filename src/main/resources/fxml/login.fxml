@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lifecal.controller.LoginController"
+      styleClass="auth-container"
+      alignment="CENTER">
+    
+    <VBox styleClass="auth-card" alignment="CENTER">
+        <!-- Title -->
+        <Label text="LIFE CAL" styleClass="label-title">
+            <VBox.margin>
+                <Insets bottom="10"/>
+            </VBox.margin>
+        </Label>
+        
+        <Label text="ติดตามสุขภาพและจัดการแคลอรี่" styleClass="label-secondary">
+            <VBox.margin>
+                <Insets bottom="30"/>
+            </VBox.margin>
+        </Label>
+        
+        <!-- Username Field -->
+        <Label text="ชื่อผู้ใช้">
+            <VBox.margin>
+                <Insets bottom="8"/>
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="usernameField" promptText="กรอกชื่อผู้ใช้" minWidth="350">
+            <VBox.margin>
+                <Insets bottom="16"/>
+            </VBox.margin>
+        </TextField>
+        
+        <!-- Password Field -->
+        <Label text="รหัสผ่าน">
+            <VBox.margin>
+                <Insets bottom="8"/>
+            </VBox.margin>
+        </Label>
+        <PasswordField fx:id="passwordField" promptText="กรอกรหัสผ่าน" minWidth="350">
+            <VBox.margin>
+                <Insets bottom="24"/>
+            </VBox.margin>
+        </PasswordField>
+        
+        <!-- Buttons -->
+        <Button text="เข้าสู่ระบบ" onAction="#handleLogin" maxWidth="Infinity" minHeight="45">
+            <VBox.margin>
+                <Insets bottom="12"/>
+            </VBox.margin>
+        </Button>
+        
+        <Button text="สร้างบัญชีใหม่" onAction="#handleRegister" styleClass="button-secondary" maxWidth="Infinity" minHeight="45"/>
+    </VBox>
+</VBox>

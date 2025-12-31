@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lifecal.controller.FoodCategoryController"
+      styleClass="container" spacing="24">
+    
+    <Label text="หมวดหมู่อาหาร" styleClass="label-heading">
+        <VBox.margin>
+            <Insets bottom="12"/>
+        </VBox.margin>
+    </Label>
+    
+    <GridPane hgap="16" vgap="16">
+        <VBox alignment="CENTER" spacing="8" styleClass="category-button" prefWidth="250" prefHeight="150"
+              GridPane.rowIndex="0" GridPane.columnIndex="0" onMouseClicked="#handleCategoryClick">
+            <?import javafx.scene.image.ImageView?>
+            <?import javafx.scene.image.Image?>
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+                <image>
+                    <Image url="@../images/โปรตีน.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="โปรตีน" styleClass="category-label"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="8" styleClass="category-button" prefWidth="250" prefHeight="150"
+              GridPane.rowIndex="0" GridPane.columnIndex="1" onMouseClicked="#handleCategoryClick">
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+                <image>
+                    <Image url="@../images/ไขมัน.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="ไขมัน" styleClass="category-label"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="8" styleClass="category-button" prefWidth="250" prefHeight="150"
+              GridPane.rowIndex="0" GridPane.columnIndex="2" onMouseClicked="#handleCategoryClick">
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+                <image>
+                    <Image url="@../images/คาร์โบไฮเดรต.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="คาร์โบไฮเดรต" styleClass="category-label"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="8" styleClass="category-button" prefWidth="250" prefHeight="150"
+              GridPane.rowIndex="1" GridPane.columnIndex="0" onMouseClicked="#handleCategoryClick">
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+                <image>
+                    <Image url="@../images/ผัก.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="ผัก" styleClass="category-label"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="8" styleClass="category-button" prefWidth="250" prefHeight="150"
+              GridPane.rowIndex="1" GridPane.columnIndex="1" onMouseClicked="#handleCategoryClick">
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+                <image>
+                    <Image url="@../images/อาหารจารเดียว.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="อาหารจานเดียว" styleClass="category-label"/>
+        </VBox>
+        
+        <VBox alignment="CENTER" spacing="8" styleClass="category-button" prefWidth="250" prefHeight="150"
+              GridPane.rowIndex="1" GridPane.columnIndex="2" onMouseClicked="#handleCategoryClick">
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true">
+                <image>
+                    <Image url="@../images/เครื่องดื่ม.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="เครื่องดื่ม" styleClass="category-label"/>
+        </VBox>
+    </GridPane>
+    
+    <Button text="← กลับไปแดชบอร์ด" onAction="#handleBack" styleClass="button-secondary" maxWidth="200"/>
+</VBox>

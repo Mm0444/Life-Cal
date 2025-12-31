@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.lifecal.controller.FoodListController"
+      styleClass="container" spacing="16">
+    
+    <Label fx:id="categoryLabel" text="หมวดหมู่อาหาร" styleClass="label-heading">
+        <VBox.margin>
+            <Insets bottom="8"/>
+        </VBox.margin>
+    </Label>
+    
+    <!-- Logging Controls -->
+    <VBox styleClass="card" spacing="12">
+        <Label text="บันทึกการรับประทานอาหาร" styleClass="label-subheading"/>
+        <GridPane hgap="12" vgap="12">
+            <Label text="วันที่:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="200"/>
+            
+            <Label text="มื้ออาหาร:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="mealTimeComboBox" promptText="เลือกมื้ออาหาร..." GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="200"/>
+            
+            <Label text="จำนวน:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="quantityField" promptText="เช่น 1.5" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="200"/>
+        </GridPane>
+        <Label text="เลือกรายการอาหารจากตารางด้านล่างแล้วกดปุ่ม 'บันทึก'" styleClass="label-secondary" style="-fx-font-style: italic;"/>
+    </VBox>
+    
+    <TableView fx:id="foodTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="ชื่ออาหาร" prefWidth="250"/>
+            <TableColumn fx:id="caloriesColumn" text="แคลอรี่ (กิโลแคลอรี่)" prefWidth="120"/>
+            <TableColumn fx:id="proteinColumn" text="โปรตีน (กรัม)" prefWidth="100"/>
+            <TableColumn fx:id="carbsColumn" text="คาร์โบไฮเดรต (กรัม)" prefWidth="120"/>
+            <TableColumn fx:id="fatColumn" text="ไขมัน (กรัม)" prefWidth="100"/>
+            <TableColumn fx:id="actionColumn" text="การกระทำ" prefWidth="100"/>
+        </columns>
+    </TableView>
+    
+    <Button text="← กลับไปหมวดหมู่" onAction="#handleBack" styleClass="button-secondary" maxWidth="200"/>
+</VBox>
