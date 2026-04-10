@@ -129,7 +129,7 @@ lifecal-system/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/lifecal-system.git
+   git clone https://github.com/Mm0444/lifecal-system.git
    cd lifecal-system
    ```
 
