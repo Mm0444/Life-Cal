@@ -52,32 +52,6 @@
 
 ---
 
-## 🖼️ Screenshots
-
-### Dashboard
-![Dashboard](screenshots/dashboard.png)
-*Main dashboard showing health metrics and quick access to features*
-
-### Food Management
-![Food List](screenshots/food-list.png)
-*Browse and log food items by category*
-
-![Daily Food Log](screenshots/daily-food-log.png)
-*View and manage daily food intake*
-
-### Exercise Management
-![Exercise List](screenshots/exercise-list.png)
-*Browse and log exercise activities*
-
-### Reports
-![Calorie Report](screenshots/calorie-report.png)
-*Calorie intake vs. burned analysis with charts*
-
-![Weight Report](screenshots/weight-report.png)
-*Weight trend visualization over time*
-
----
-
 ## 🛠️ Technology Stack
 
 - **Java 17** - Core programming language
